@@ -1,1 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/fonts/stylesheet.css";
+@import "remixicon/fonts/remixicon.css";
+
+:root {
+  --light-blue: #0c8df9;
+  --dark-blue: #103b86;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Product Sans";
+}
+
+ul,
+ol,
+p {
+  list-style: none;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn.btn-primary {
+  background-color: var(--light-blue);
+  transition: 0.3s ease-in-out;
+  border: none;
+}
+
+.btn.btn-primary:hover {
+  background-color: var(--dark-blue);
+}
+
+.section-title {
+  color: var(--dark-blue);
+  text-align: center;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 57.6px;
+  margin-bottom: 50px;
+}
