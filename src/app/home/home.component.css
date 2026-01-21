@@ -1,5 +1,5 @@
 /* Header */
-.dark-logo{
+.dark-logo {
   width: 102px;
   height: 29px;
 }
@@ -292,20 +292,13 @@ img[alt="flag"] {
   transition: 0.3s ease-in-out;
 }
 
-.book:hover {
-  box-shadow: 0px 0px 5px 0px #00000027;
-}
-
-.book:hover i {
-  transform: scale(1.1);
-}
-
 .book h4 {
   color: var(--dark-blue);
   font-size: 20px;
   font-weight: 700;
   line-height: 32px;
   margin-bottom: 12px;
+  transition: all 0.3s ease-in-out;
 }
 
 .book p {
@@ -313,6 +306,15 @@ img[alt="flag"] {
   font-size: 14px;
   font-weight: 400;
   line-height: 22.4px;
+}
+
+.book:hover {
+  box-shadow: 0px 0px 15px 0px #00000027;
+}
+
+.book:hover i,
+.book:hover h4 {
+  transform: scale(1.1);
 }
 
 /* Soon */

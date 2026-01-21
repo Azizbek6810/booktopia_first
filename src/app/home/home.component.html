@@ -9,12 +9,24 @@
   />
   <nav class="nav">
     <ul class="d-flex align-items-center">
-      <li><a href="#about-us">Biz haqimizda</a></li>
-      <li><a href="#news">Yangiliklar</a></li>
-      <li><a href="#books">Kitoblar</a></li>
-      <li><a href="#soon">Tez kunda</a></li>
-      <li><a href="#team">Jamoa</a></li>
-      <li><a href="#contact">Aloqa</a></li>
+      <li>
+        <a href="#about-us">{{ "Common.AboutUs" | transloco }}</a>
+      </li>
+      <li>
+        <a href="#news">{{ "Common.News" | transloco }}</a>
+      </li>
+      <li>
+        <a href="#books">{{ "Common.Books" | transloco }}</a>
+      </li>
+      <li>
+        <a href="#soon">{{ "Common.Soon" | transloco }}</a>
+      </li>
+      <li>
+        <a href="#team">{{ "Common.Team" | transloco }}</a>
+      </li>
+      <li>
+        <a href="#contact">{{ "Common.Contact" | transloco }}</a>
+      </li>
     </ul>
   </nav>
   <!-- lang -->
@@ -26,11 +38,20 @@
       aria-expanded="false"
     >
       <img src="/assets/images/lang-icon.svg" alt="lang-svg" />
-      <span class="lang-span" id="selected-lang">O'zbek tili</span>
+      <span class="lang-span" id="selected-lang">{{ currentItem.value }}</span>
     </button>
     <ul class="dropdown-menu">
-      <li class="dropdown-item language" data-lang="uz">O'zbek tili</li>
-      <li class="dropdown-item language" data-lang="en">English</li>
+      @for (item of lang; track item.key) {
+        <li>
+          <button
+            type="button"
+            class="dropdown-item btn"
+            (click)="changeLang(item)"
+          >
+            {{ item.value }}
+          </button>
+        </li>
+      }
     </ul>
   </div>
   <i class="fa-solid fa-bars hamburger" id="hamburger"></i>
