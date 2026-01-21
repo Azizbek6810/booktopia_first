@@ -1,10 +1,5 @@
-import { ApplicationConfig, isDevMode } from '@angular/core';
-import {
-  provideRouter,
-  withHashLocation,
-  withInMemoryScrolling,
-} from '@angular/router';
-
+import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
+import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient } from '@angular/common/http';
@@ -20,7 +15,7 @@ export const appConfig: ApplicationConfig = {
       config: {
         availableLangs: ['en', 'uz'],
         defaultLang: 'uz',
-        reRenderOnLangChange: true,
+        reRenderOnLangChange: false,
         prodMode: !isDevMode(),
       },
       loader: TranslocoHttpLoader,

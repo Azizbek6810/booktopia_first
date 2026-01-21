@@ -1,10 +1,15 @@
-import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
+import {
+  isPlatformBrowser,
+  NgOptimizedImage,
+  PlatformLocation,
+} from '@angular/common';
+import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { KeyItem } from '../app.model';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { SeoService } from '../seo.service';
 import { Router } from '@angular/router';
 import { LanguageService } from './language.service';
+import { Language } from '../core/guard/language.guard';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +18,41 @@ import { LanguageService } from './language.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   private languageService = inject(LanguageService);
-
+  platformLocation = inject(PlatformLocation);
   constructor(
     private router: Router,
     private seoService: SeoService,
+    private translocoService: TranslocoService,
   ) {}
+
+  parseLangFromUrl(url: string): string {
+    return url.split('/')[1];
+  }
+
+  defineCurrentLang(url: string): string {
+    const langFromUrl = this.parseLangFromUrl(url);
+
+    const isValidLang = Object.values(Language).includes(langFromUrl);
+
+    const langToUse = isValidLang ? langFromUrl : 'uz';
+
+    return langToUse;
+  }
+
+  ngOnInit(): void {
+    const lang = this.defineCurrentLang(this.platformLocation.pathname);
+
+    this.languageService.updateLocale(lang);
+
+    const activeLang = this.lang.find((el) => el.key === lang);
+
+    this.currentLang = lang;
+
+    this.currentItem = activeLang ? activeLang : this.lang[0];
+  }
+
   lang: KeyItem[] = [
     {
       key: 'uz',
@@ -30,11 +63,11 @@ export class HomeComponent {
       value: 'English',
     },
   ];
+
   currentLang: string = 'uz';
-  currentItem: KeyItem = {
-    key: 'uz',
-    value: "O'zbek tili",
-  };
+
+  currentItem: KeyItem;
+
   changeLang(lang: KeyItem): void {
     this.currentItem = lang;
     this.seoService.updateHreflangLinks(this.router.url);
