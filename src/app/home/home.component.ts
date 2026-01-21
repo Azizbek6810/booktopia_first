@@ -1,13 +1,10 @@
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Component, Inject, inject, PLATFORM_ID } from '@angular/core';
 import { KeyItem } from '../app.model';
-import {
-  TranslocoDirective,
-  TranslocoPipe,
-  TranslocoService,
-} from '@jsverse/transloco';
+import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { SeoService } from '../seo.service';
 import { Router } from '@angular/router';
+import { LanguageService } from './language.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +15,8 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   // private translate = inject(TranslateService);
+  private languageService = inject(LanguageService);
+
   constructor(
     private transloco: TranslocoService,
     private router: Router,
@@ -46,5 +45,7 @@ export class HomeComponent {
       localStorage.setItem('lang', lang.key);
     }
     this.seoService.updateHreflangLinks(this.router.url);
+    this.languageService.updateLocale(lang.key);
+    this.languageService.changeLang(lang.key);
   }
 }
