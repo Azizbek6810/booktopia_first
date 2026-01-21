@@ -3,7 +3,6 @@ import { CanMatchFn, Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
 export const Language = {
-  RU: 'ru',
   UZ: 'uz',
   EN: 'en',
 };

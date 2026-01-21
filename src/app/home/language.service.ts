@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Meta} from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 

@@ -14,14 +14,11 @@ import { LanguageService } from './language.service';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  // private translate = inject(TranslateService);
   private languageService = inject(LanguageService);
 
   constructor(
-    private transloco: TranslocoService,
     private router: Router,
     private seoService: SeoService,
-    @Inject(PLATFORM_ID) private platformId: Object,
   ) {}
   lang: KeyItem[] = [
     {
@@ -40,10 +37,6 @@ export class HomeComponent {
   };
   changeLang(lang: KeyItem): void {
     this.currentItem = lang;
-    this.transloco.setActiveLang(lang.key);
-    if (isPlatformBrowser(this.platformId)) {
-      localStorage.setItem('lang', lang.key);
-    }
     this.seoService.updateHreflangLinks(this.router.url);
     this.languageService.updateLocale(lang.key);
     this.languageService.changeLang(lang.key);
