@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable } from '@angular/core';
-import { Meta} from '@angular/platform-browser';
+import { Meta } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 
@@ -21,25 +21,26 @@ export class LanguageService {
 
   updateLocale(lang: string): void {
     this.translocoService.setActiveLang(lang);
-
     this.translocoService.selectTranslateObject('meta').subscribe({
-      next: ({ title, description }) => {
-        this.meta.updateTag({
-          name: 'description',
-          content: description,
-        });
+      next: ({ description }) => {
+        if (description) {
+          this.meta.updateTag({
+            name: 'description',
+            content: description,
+          });
 
-        this.meta.updateTag({
-          name: 'locale',
-          content: lang,
-        });
+          this.meta.updateTag({
+            name: 'locale',
+            content: lang,
+          });
 
-        this.meta.updateTag({
-          'http-equiv': 'Content-Language',
-          content: lang,
-        });
+          this.meta.updateTag({
+            'http-equiv': 'Content-Language',
+            content: lang,
+          });
 
-        this.documentEl.lang = lang;
+          this.documentEl.lang = lang;
+        }
       },
     });
   }

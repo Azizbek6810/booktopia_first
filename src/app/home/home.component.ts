@@ -3,28 +3,29 @@ import {
   NgOptimizedImage,
   PlatformLocation,
 } from '@angular/common';
-import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { KeyItem } from '../app.model';
 import { TranslocoPipe, TranslocoService } from '@jsverse/transloco';
 import { SeoService } from '../seo.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LanguageService } from './language.service';
 import { Language } from '../core/guard/language.guard';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoPipe],
+  imports: [NgOptimizedImage, TranslocoPipe, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   private languageService = inject(LanguageService);
   platformLocation = inject(PlatformLocation);
+  currentLang: string = 'uz';
+  currentItem: KeyItem;
   constructor(
     private router: Router,
     private seoService: SeoService,
-    private translocoService: TranslocoService,
   ) {}
 
   parseLangFromUrl(url: string): string {
@@ -63,10 +64,6 @@ export class HomeComponent implements OnInit {
       value: 'English',
     },
   ];
-
-  currentLang: string = 'uz';
-
-  currentItem: KeyItem;
 
   changeLang(lang: KeyItem): void {
     this.currentItem = lang;

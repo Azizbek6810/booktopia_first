@@ -10,22 +10,34 @@
   <nav class="nav">
     <ul class="d-flex align-items-center">
       <li>
-        <a href="#about-us">{{ "Common.AboutUs" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="about-us">{{
+          "Common.AboutUs" | transloco
+        }}</a>
       </li>
       <li>
-        <a href="#news">{{ "Common.News" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="news">{{
+          "Common.News" | transloco
+        }}</a>
       </li>
       <li>
-        <a href="#books">{{ "Common.Books" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="books">{{
+          "Common.Books" | transloco
+        }}</a>
       </li>
       <li>
-        <a href="#soon">{{ "Common.Soon" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="soon">{{
+          "Common.Soon" | transloco
+        }}</a>
       </li>
       <li>
-        <a href="#team">{{ "Common.Team" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="team">{{
+          "Common.Team" | transloco
+        }}</a>
       </li>
       <li>
-        <a href="#contact">{{ "Common.Contact" | transloco }}</a>
+        <a [routerLink]="['/', currentLang]" fragment="contact">{{
+          "Common.Contact" | transloco
+        }}</a>
       </li>
     </ul>
   </nav>
